@@ -1,6 +1,6 @@
 # Exercice PHP Euro2016
 
-1. **Import / affichage des données**
+### 1. **Import / affichage des données**
 
 - charger / parser le fichier competition.json
 - affichez la liste des groupes ( nom du groupes et liste des équipes )
@@ -21,14 +21,14 @@ Par exemple :
 
 - classes ...
 
-2. **Pronostics**
+### 2. **Pronostics**
 - pour chaque match affichez :
   - deux chps permettant de saisir et de stocker votre pronostic + un bouton de sauvegarde
   - deux chps permettant de saisir et de stocker le résultat réel + un bouton de sauvegarde
 
 **Méthode** : vous stockez les résultats comme vous voulez sql / local / sqlite ou autres
 
-3. **Résultats :** une fois tous les matchs joués :
+### 3. **Résultats :** une fois tous les matchs joués :
 
 - affichez le nombre de pronostics corrects :
   - vainqueur ou match nul deviné » 1pt
