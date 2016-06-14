@@ -3,9 +3,9 @@
 ### 1. **Import / affichage des données**
 
 - charger / parser le fichier <a href="competition.json" target="_blank">competition.json</a>
-- affichez la liste des groupes ( nom du groupes et liste des équipes )
+- affichez la liste des groupes ( nom du groupe et liste des équipes )
 - rendre le nom du groupe cliquable.
-- au clic : affichez la liste de matches du groupes et un bouton "retour à la liste"
+- au clic : affichez la liste de matches du groupe et un bouton "retour à la liste"
 
 **Méthode : ** au pire, et/ou pour commencer, en procédural,... au mieux plein de POO :
 
