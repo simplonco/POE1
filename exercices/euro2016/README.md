@@ -2,7 +2,7 @@
 
 ### 1. **Import / affichage des données**
 
-- charger / parser le fichier competition.json
+- charger / parser le fichier <a href="competition.json" target="_blank">competition.json</a>
 - affichez la liste des groupes ( nom du groupes et liste des équipes )
 - rendre le nom du groupe cliquable.
 - au clic : affichez la liste de matches du groupes et un bouton "retour à la liste"
