@@ -1,11 +1,14 @@
 # POE Intro
 
-## Objectifs Juin
+
+## Pré-requis
+[Questionnaire](http://goo.gl/forms/moGYbWbc3cjFQ2Pk1)
 
 ## ré-échauffement
 
 - <a href="https://www.codewars.com/" target="_blank">codewars</a> ( algo JS )
 - <a href="http://exercism.io/languages/php" target="_blank">exercism</a> ( PHP / Test unitaires)
+- <a href="http://codekata.pragprog.com" target="_blank">CodeKata</a>
 
 ### Défi 1 : <a href="exercices/euro2016/README.md" target="_blank">Euro 2016</a>
 
@@ -15,8 +18,6 @@
 - http://bdelespierre.fr/article/la-poo-en-php-en-10-minutes-ou-moins/
 - http://petit-dev.com/php-introduction-programmation-orientee-objet/
 - intro POO https://github.com/Simplon-lyon/dev-web/wiki/semaine16
-
-
 
 ## PHP Test Unitaires
 
