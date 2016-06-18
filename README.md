@@ -3,7 +3,7 @@
 ## Pré-requis PHP
 - [Questionnaire](http://goo.gl/forms/moGYbWbc3cjFQ2Pk1)
 
-## [Support PHP Promo1](1_php_les_bases.md)
+## [Support PHP Promo1](1_php_bases.md)
 
 ## Conventions d'écriture PHP
 - <a href="http://symfony.com/doc/current/contributing/code/standards.html" target="_blank">symfony</a>
