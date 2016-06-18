@@ -2,7 +2,8 @@
 
 ## Pré-requis PHP
 - [Questionnaire](http://goo.gl/forms/moGYbWbc3cjFQ2Pk1)
-- [Support PHP Promo1](1_php_les_bases)
+
+## [Support PHP Promo1](1_php_les_bases.md)
 
 ## Conventions d'écriture PHP
 - <a href="http://symfony.com/doc/current/contributing/code/standards.html" target="_blank">symfony</a>
@@ -25,7 +26,6 @@
 - http://gregwar.com/php/programmation-orientee-objet.html
 - http://bdelespierre.fr/article/la-poo-en-php-en-10-minutes-ou-moins/
 - http://petit-dev.com/php-introduction-programmation-orientee-objet/
-- intro POO https://github.com/Simplon-lyon/dev-web/wiki/semaine16
 
 ## PHP Test Unitaires
 
