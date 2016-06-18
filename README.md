@@ -1,8 +1,15 @@
 # POE Intro
 
-
 ## Pré-requis
 [Questionnaire](http://goo.gl/forms/moGYbWbc3cjFQ2Pk1)
+
+## Conventions d'écriture PHP
+- <a href="http://symfony.com/doc/current/contributing/code/standards.html" target="_blank">symfony</a>
+- <a href="http://www.php-fig.org/psr/psr-2/" target="_blank">Autre exemple</a>
+
+## PHP 7
+- <a href="http://linuxfr.org/news/sortie-de-php-7-0-un-nouveau-depart" target="_blank">PHP7 un nouveau départ</a>
+- <a href="http://php.net/manual/fr/migration70.new-features.php" target="_blank">PHP 7 - les nouveautés</a>
 
 ## ré-échauffement
 
