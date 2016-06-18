@@ -1,8 +1,8 @@
 # PHP - les bases
 
-+ [Le PHP Facile](http://www.lephpfacile.com/cours/)
-+ [PHP Pandas](http://daylerees.com/php-pandas/)
-+ [:memo:Introduction détaillée au PHP :fr:](http://aulas.pierre.free.fr/cou_php_base.html)
++ <a href="http://www.lephpfacile.com/cours/" target="_blank">Le PHP Facile</a>
++ <a href="http://daylerees.com/php-pandas/" target="_blank">PHP Pandas</a>
++ <a href="http://aulas.pierre.free.fr/cou_php_base.html" target="_blank">:memo:Introduction détaillée au PHP :fr:</a>
 
 ### Développement Back-end
 
@@ -73,15 +73,16 @@ Pour passer les 2 variables login et password au fichier PHP, en mode 'get' :
 
 - Correction liste articles / page article
 
-![php_patchwork](assets/php_patchwork.png)
-
-#### Mysql
+## MYSQL
 
 [:memo:Introduction détaillée à MYSQL :fr:](http://aulas.pierre.free.fr/cou_sql_syntaxe.html)
 
-Base de données relationnelle
+**Base de données relationnelle**
 
 ![exemple table](http://i.stack.imgur.com/ruxKF.png)
+
+
+** Installation mysql pour PHP ** (ubuntu 15.04)
 
 ```bash
 sudo apt-get install mysql-server php5-mysql
@@ -563,7 +564,7 @@ echo $res_link ? "ok" : "error";
 
 Pour effectuer une sélection de données de plusieurs tables, on peut utiliser des jointures.
 
-![jointures](assets/jointure-sql.jpg)
+![jointures](docs/jointure-sql.jpg)
 
 Exemples :
 
@@ -747,7 +748,7 @@ Par contre on va pouvoir utiliser nos propres types d'objets, nos classes
 - héritage
 - Interfaces
 
-+ [Support intro POO PHP PDF](docs/intro_poo_php.pdf)
++ <a href="https://github.com/Simplon-lyon/dev-web/wiki/docs/intro_poo_php.pdf" target="_blank">Support intro POO PHP PDF</a>
 
 ```php
 <?php
