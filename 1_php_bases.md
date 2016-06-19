@@ -6,22 +6,15 @@
 
 ### Développement Back-end
 
-+ Rappel : Fonctionnement Internet : Client / Serveur
++ Rappels :
+- [:tv: Fonctionnement Internet : Client / Serveur](https://www.youtube.com/watch?v=7_LPdttKXPc)
+- [:memo: Fonctionnement Web](https://developer.mozilla.org/fr/Apprendre/Commencer_avec_le_web/Le_fonctionnement_du_Web)
 
-+ Introduction PHP
-  + Personal Home Page » PHP : Hypertext Preprocessor
-  + langage serveur interpreté
-  + exemple
-  + http://phpepl.herokuapp.com
+## LAMP - Linux Apache Mysql PHP
 
-+ [LAMP : Linux Apache Mysql PHP](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-14-04)
+[install LAMP](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-14-04)
 
-**Installation**
-  + Apache2
-  + Mysql
-  + PHP5
-
-### PHP
+## PHP
 
 ```php
 
@@ -91,7 +84,7 @@ sudo mysql_secure_installation
 mysql -u root -p
 ```
 
-#### Création / destruction de bases de données et de tables
+### Création / destruction de bases de données et de tables
 
 ```sql
 SHOW DATABASES;
@@ -173,7 +166,7 @@ En cas d'erreur seulement
 + [Correction Login Ajax](https://github.com/Simplon-lyon/dev-web/tree/master/php/login_ajax)
 
 
-#### PHP / MYSQL - Introduction
+## PHP / MYSQL - Introduction
 
 Il existe plusieurs manières d'accéder à une base de données, mais le principe/process est souvent le même :
 + on crée une connexion à la base de données
@@ -237,20 +230,7 @@ if( $connexion = mysqli_connect('localhost', 'root', 'root', 'blog') ){
 ?>
 ```
 
-
-### Exercices
-+ Imaginez une application de gestion de tâche aka todolist *sauvegardée* en base de données.
-  + Quelles informations doivent être enregistrées ? quelle structure de table ?
-  + développez l'application
-
-+ Choisissez un blog et essayez d'imaginer sa **structure de données**.
-
-### Défi 1 pour 18/01 : simpllo
-+ seul ou à 2 : développer un mini trello avec back-office.
-+ publication sur gandi avec Filezilla & sur github
-
-
-## Formulaire PHP
+### Formulaire PHP
 
 ```html
 <form action="ajout.php" method="get">
@@ -277,7 +257,7 @@ if( isset($_GET['nom']) && isset($_GET['prenom'])){
 Par défaut, les boutons d'un formulaire déclenchent l'ouverture de la page 'action' du formulaire,
 c'est sur cette page que le traitement des données saisies dans le formulaire
 
-#### Méthodes : GET ou POST
+### Méthodes : GET ou POST
 
 Jusqu'à présent on a utilisé la méthode 'get' pour l'envoi de données : les paramètres sont passées dans l'url.
 C'est la méthode la plus simple pour comprendre l'envoi de données, mais elle a plusieurs limite :
@@ -305,7 +285,8 @@ if( isset($_POST['nom']) && isset($_POST['prenom'])){
 [:book: W3C - POST ou GET ?](http://www.w3.org/2001/tag/doc/whenToUseGet.html#checklist)
 
 
-## Dates
+
+### Dates
 
 On peut utiliser la fonction date() ou un objet DateTime()
 
@@ -332,58 +313,8 @@ echo $date->format('d-m-Y H:i:s').B;
 + Timestamp : entier représentant le nb de sec écoulées depuis 1/1/1970
 
 
-#### MYSQL
 
-**requêtes préparées**
-
-```php
-
-<?php
-$db = new PDO('mysql:host=localhost; dbname=blog;charset=utf8', 'root', 'secret');
-
-// preparation de la requete
-$insertion = "INSERT INTO auteurs(`id`,`nom`,`mail`) ";
-$insertion .= "VALUES (NULL, :nom, :mail)";
-$requete = $db->prepare($insertion);
-
-// remplissage
-$requete->bindParam(':nom', $nom, PDO::PARAM_STR);
-$requete->bindParam(':mail', $mail, PDO::PARAM_STR);
-$result = $requete->execute(); // renvoie TRUE || FALSE
-
-// la requête pourrait être rappelée plusieurs fois avec de nouvelles valeurs
-
-?>
-```
-
-+ **Sauvegarde de mot de passe**
-
-PHP et MySQL proposent des fonctions de [hashage](https://fr.wikipedia.org/wiki/Fonction_de_hachage) permettant de "crypter" les mots de passe
- afin de les rendre illisibles.
-
-ex: SHA('SECRET') = 3c3b274d119ff5a5ec6c1e215c1cb794d9973ac1
-
-**MySQL**
-
-+ insertion
-```sql
-INSERT INTO users(`mail`,`password`) VALUES ( 'toto@gmail.com', SHA('SECRET'));
-```
-
-+ récupération
-```sql
-SELECT * FROM users WHERE `password`=SHA('SECRET')
-```
-
-**PHP**
-
-```php
-$code = sha1('SECRET');
-```
-
-
-
-#### Les Sessions
+### Les Sessions
 
 Les sessions permettent de stocker sur le serveur, des variables associées à un utilisateur.
 Ces données sont temporaires, et les sessions et leur données sont détruites à la fermeture du navigateur.
@@ -434,13 +365,64 @@ session_destroy(); // détruit la session
 
 
 
+
+## MYSQL
+
+**requêtes préparées**
+
+```php
+
+<?php
+$db = new PDO('mysql:host=localhost; dbname=blog;charset=utf8', 'root', 'secret');
+
+// preparation de la requete
+$insertion = "INSERT INTO auteurs(`id`,`nom`,`mail`) ";
+$insertion .= "VALUES (NULL, :nom, :mail)";
+$requete = $db->prepare($insertion);
+
+// remplissage
+$requete->bindParam(':nom', $nom, PDO::PARAM_STR);
+$requete->bindParam(':mail', $mail, PDO::PARAM_STR);
+$result = $requete->execute(); // renvoie TRUE || FALSE
+
+// la requête pourrait être rappelée plusieurs fois avec de nouvelles valeurs
+
+?>
+```
+
++ **Sauvegarde de mot de passe**
+
+PHP et MySQL proposent des fonctions de [hashage](https://fr.wikipedia.org/wiki/Fonction_de_hachage) permettant de "crypter" les mots de passe
+ afin de les rendre illisibles.
+
+ex: SHA('SECRET') = 3c3b274d119ff5a5ec6c1e215c1cb794d9973ac1
+
+**MySQL**
+
++ insertion
+```sql
+INSERT INTO users(`mail`,`password`) VALUES ( 'toto@gmail.com', SHA('SECRET'));
+```
+
++ récupération
+```sql
+SELECT * FROM users WHERE `password`=SHA('SECRET')
+```
+
+**PHP**
+
+```php
+$code = sha1('SECRET');
+```
+
+
 :fire: **Tuto SQL**
 + [SQL tutorial - Part 1 : basics :us:](http://net.tutsplus.com/tutorials/other/sql-for-beginners/)
 + [SQL tutorial - Part 2 : index, requêtes avancées, datatypes :us:](http://code.tutsplus.com/tutorials/sql-for-beginners-part-2--net-8274)
 
-### Conception de Bases de données relationnelles
+## Conception de Bases de données relationnelles
 
-#### [Principes de base de la normalisation des bases de données](https://support.microsoft.com/fr-fr/kb/283878)
+### [Principes de base de la normalisation des bases de données](https://support.microsoft.com/fr-fr/kb/283878)
 [Intro normalisation 2](http://www.phpro.org/tutorials/Introduction-To-Database-Normalization.html#5)
 
 - 1ère forme normale
@@ -560,7 +542,7 @@ echo $res_link ? "ok" : "error";
 ?>
 ```
 
-#### Jointures
+### Jointures
 
 Pour effectuer une sélection de données de plusieurs tables, on peut utiliser des jointures.
 
@@ -588,7 +570,7 @@ WHERE id_task = 1
 [Jointures - OC](https://openclassrooms.com/courses/administrez-vos-bases-de-donnees-avec-mysql/jointures-1)
 [Jointures SQL](http://sql.sh/cours/jointures)
 
-#### Extras : fonctions SQL
+### Extras : fonctions SQL
 
 + ORDER BY
 + LIMIT
@@ -600,6 +582,19 @@ WHERE id_task = 1
 + LIKE
 + MIN(), MAX(), AVG(), SUM()
 + ...
+
+
+
+### Exercices
++ Imaginez une application de gestion de tâche aka todolist *sauvegardée* en base de données.
+  + Quelles informations doivent être enregistrées ? quelle structure de table ?
+  + développez l'application
+
++ Choisissez un blog et essayez d'imaginer sa **structure de données**.
+
+### Défi 1 pour 18/01 : simpllo
++ seul ou à 2 : développer un mini trello avec back-office.
++ publication sur gandi avec Filezilla & sur github
 
 
 #### PHP POO
