@@ -21,6 +21,11 @@ Par exemple :
 
 - classes ...
 
+#### Extras
+- ajouter gestion mauvaise Id de groupe
+- ajouter affichage drapeau
+
+
 ### 2. **Pronostics**
 - pour chaque match affichez :
   - deux chps permettant de saisir et de stocker votre pronostic + un bouton de sauvegarde

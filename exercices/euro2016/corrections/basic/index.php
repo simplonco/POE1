@@ -5,7 +5,10 @@ define("B", "<br/>");
 define("PATH_DATA", "competition.json");
 define("PATH_APP", $_SERVER['PHP_SELF']);
 
-$competitionition = '';
+/**
+ * stdClass : structure de données d'une competition
+ */
+$competition;
 
 function initData($path)
 {
@@ -16,15 +19,15 @@ function initData($path)
 
 /**
  * renvoie le rendu html d'une compétition
- * @return string
+ * @return string rendu html d'une compétition
  */
 function renderIndex():string
 {
-    initData(PATH_DATA);
+    initData(PATH_DATA); //TODO renommer
 
     $content = TITLE;
 
-    $content .= getCompetitionView();
+    $content .= getIndexView();
 
     return $content;
 }
@@ -39,7 +42,7 @@ function renderHeader($compet):string
  * renvoie l'affichage html d'une description json de competition
  * @return string
  */
-function getCompetitionView():string
+function getIndexView():string
 {
     global $competition;
 
@@ -48,8 +51,6 @@ function getCompetitionView():string
     ;
 
     $content .= getGroupsViews($competition->groups);
-
-    $groups = $competition->groups;
 
     return $content;
 }
@@ -105,7 +106,7 @@ function renderGroupPage(string $groupId):string
 
     $content = renderHeader($competition);
     $content .= ahref(PATH_APP,"Retour aux groupes" );
-    $content .= renderHeader($competition);
+    //$content .= renderHeader($competition);
     $content .= renderGroupMatches($selectedGroup);
 
     return $content/*p($competition->name)*/

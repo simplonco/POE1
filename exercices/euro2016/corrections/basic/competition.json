@@ -3,7 +3,15 @@
   "groups":[
     {
       "id":"A",
-      "teams":["France","Roumanie", "Albanie", "Suisse"]
+      "teams": [
+        {
+          "nom": "France",
+          "flag": "flags/france.png"
+        },
+        "Roumanie",
+        "Albanie",
+        "Suisse"
+      ]
     },
     {
       "id":"B",

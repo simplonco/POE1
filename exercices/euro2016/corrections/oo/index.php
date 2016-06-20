@@ -87,10 +87,10 @@ class IndexView
 
     public function render():string
     {
-        $view = Utils::tag('h1', $this->compet->name);
+        $view = HTMLUtils::tag('h1', $this->compet->name);
 
         foreach ($this->compet->groups as $group) {
-            $view .= Utils::ahref(PATH_APP . '?selectedGroupId=' . $group->id, Utils::tag('h2', $group->id));
+            $view .= HTMLUtils::ahref(PATH_APP . '?selectedGroupId=' . $group->id, HTMLUtils::tag('h2', $group->id));
             $view .= $this->renderTeams($group);
         }
 
@@ -106,7 +106,7 @@ class IndexView
     {
         $view = '';
         foreach ($group->teams as $team) {
-            $view .= Utils::tag('p', $team);
+            $view .= HTMLUtils::tag('p', $team);
         }
         return $view;
     }
@@ -136,11 +136,11 @@ class GroupView{
 
     public function render():string
     {
-        $view = Utils::tag('h1', $this->compet->name);
-        $view .= Utils::ahref(PATH_APP, "Retour à la liste");
-        $view .= Utils::tag('h2', "Groupe ".$this->group->id);
+        $view = HTMLUtils::tag('h1', $this->compet->name);
+        $view .= HTMLUtils::ahref(PATH_APP, "Retour à la liste");
+        $view .= HTMLUtils::tag('h2', "Groupe " . $this->group->id);
 
-        $view .= $this->renderMatch($this->group->teams);
+        $view .= $this->renderMatches($this->group->teams);
 
         /*foreach ($this->group->teams as $team) {
             //$view .= Utils::ahref(PATH_APP . '?selectedGroupId=' . $group->id, Utils::tag('h2', $group->id));
@@ -155,7 +155,7 @@ class GroupView{
      * @return string
      * @internal param Group $group
      */
-    private function renderMatch($teams):string
+    private function renderMatches($teams):string
     {
         $count = 0;
         $matches = array_map( function($team) use( $teams , &$count){
@@ -163,7 +163,7 @@ class GroupView{
             for($i = $count; $i < 4 ; $i++ ){
                 $t = $teams[$i];
                 if( $t != $team )
-                    $content .= Utils::tag('p',$team . '-' . $t);
+                    $content .= HTMLUtils::tag('p', $team . '-' . $t);
             }
             $count++;
             return $content;
@@ -183,16 +183,25 @@ class Competition
 
     public $groups;
 
+    private $originalData;
+
     function __construct(stdClass $src)
     {
         $this->initData($src);
+        $this->originalData = $src;
     }
+
+    function __toString():string
+    {
+        return "Objet Competition[" . $this->name . " ( nombre groupes : " . count($this->groups) . " ')" . "]";
+    }
+
 
     /**
      * initialisation des données à partir d'un objet stdClass
      * @param $src
      */
-    function initData($src)
+    private function initData(string $src)
     {
         $this->name = $src->name;
 
@@ -208,7 +217,7 @@ class Competition
      * @param $groupId
      * @return Group
      */
-    function getGroupById($groupId):Group
+    public function getGroupById($groupId):Group
     {
         $selectedGroups = array_filter(
             $this->groups,
@@ -264,7 +273,7 @@ class Team
 /**
  * Class Utils : utilitaires HTML
  */
-class Utils
+class HTMLUtils
 {
     static public function tag(string $tag, string $str):string
     {
@@ -282,6 +291,7 @@ class Utils
         return '<a href="' . $url . '">' . $str . "</a>";
     }
 }
+
 
 $router = new Router();
 $page = $router->get($_GET);
