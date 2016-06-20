@@ -100,7 +100,7 @@ function renderGroupPage(string $groupId):string
             //echo $groupId." / " .$group->id.B;
             return $group->id == $groupId;
         });
-    if( count($selectedGroups)>0)
+    if( count($selectedGroups)>0 )
         $selectedGroup = $selectedGroups[array_keys($selectedGroups)[0]];
 
     $content = renderHeader($competition);
