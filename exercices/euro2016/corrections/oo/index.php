@@ -136,11 +136,17 @@ class GroupView{
 
     public function render():string
     {
-        $view = HTMLUtils::tag('h1', $this->compet->name);
-        $view .= HTMLUtils::ahref(PATH_APP, "Retour à la liste");
-        $view .= HTMLUtils::tag('h2', "Groupe " . $this->group->id);
+        if ($this->group == null){
+            $view = HTMLUtils::ahref(PATH_APP, "Retour à la liste");
+            $view .= HTMLUtils::tag("p","Ce groupe n'existe pas");
+        }
 
-        $view .= $this->renderMatches($this->group->teams);
+        else {
+            $view = HTMLUtils::tag('h1', $this->compet->name);
+            $view .= HTMLUtils::ahref(PATH_APP, "Retour à la liste");
+            $view .= HTMLUtils::tag('h2', "Groupe " . $this->group->id);
+            $view .= $this->renderMatches($this->group->teams);
+        }
 
         /*foreach ($this->group->teams as $team) {
             //$view .= Utils::ahref(PATH_APP . '?selectedGroupId=' . $group->id, Utils::tag('h2', $group->id));
@@ -157,6 +163,7 @@ class GroupView{
      */
     private function renderMatches($teams):string
     {
+
         $count = 0;
         $matches = array_map( function($team) use( $teams , &$count){
             $content = '';
@@ -201,7 +208,7 @@ class Competition
      * initialisation des données à partir d'un objet stdClass
      * @param $src
      */
-    private function initData(string $src)
+    private function initData($src)
     {
         $this->name = $src->name;
 
@@ -217,7 +224,7 @@ class Competition
      * @param $groupId
      * @return Group
      */
-    public function getGroupById($groupId):Group
+    public function getGroupById($groupId)
     {
         $selectedGroups = array_filter(
             $this->groups,
@@ -227,6 +234,9 @@ class Competition
             });
         if (count($selectedGroups) > 0)
             $selectedGroup = $selectedGroups[array_keys($selectedGroups)[0]];
+
+        if (count($selectedGroups) == 0)
+            $selectedGroup = null;
 
         return $selectedGroup;
     }
@@ -286,7 +296,7 @@ class HTMLUtils
      * @param string $str
      * @return string
      */
-    static function ahref(string $url, string $str):string
+    static public function ahref(string $url, string $str):string
     {
         return '<a href="' . $url . '">' . $str . "</a>";
     }
