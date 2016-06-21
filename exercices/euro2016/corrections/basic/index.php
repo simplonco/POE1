@@ -5,9 +5,9 @@ define("B", "<br/>");
 define("PATH_DATA", "competition.json");
 define("PATH_APP", $_SERVER['PHP_SELF']);
 
-///**
-// * stdClass : structure de données d'une competition
-// */
+/**
+ * stdClass : structure de données d'une competition
+ */
 global $competition;
 
 function initData($path)
@@ -104,12 +104,14 @@ function renderGroupPage(string $groupId):string
     if( count($selectedGroups)>0 )
         $selectedGroup = $selectedGroups[array_keys($selectedGroups)[0]];
 
-    if( count($selectedGroups)<=0)
-        return "Ce groupe n'existe pas";
+    if( count($selectedGroups)<=0) {
+        $content = ahref(PATH_APP, "Retour aux groupes");
+        $content .= tag("p","Ce groupe n'existe pas");
+        return $content;
+    }
 
     $content = renderHeader($competition);
     $content .= ahref(PATH_APP,"Retour aux groupes" );
-    $content .= renderHeader($competition);
     $content .= renderGroupMatches($selectedGroup);
 
     return $content;
