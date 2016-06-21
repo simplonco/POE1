@@ -77,8 +77,10 @@ function getGroupsViews(array $groups):string
 function getGroupView($group)
 {
     $content = ahref(PATH_APP . '?selectedGroupId=' . $group->id, $group->id);
-    foreach ($group->teams as $team) {
-        $content .= p($team);
+    foreach ($group->teams as $teamInfo) {
+//        echo "<pre>";
+//        var_dump($teamInfo);
+        $content .= p(img($teamInfo->flag).$teamInfo->nom);
     }
     return $content;
 }
@@ -131,7 +133,7 @@ function renderGroupMatches($group):string
         for($i = $count; $i < 4 ; $i++ ){
             $t = $teams[$i];
             if( $t != $team )
-                $content .= p($team . '-' . $t);
+                $content .= p(img($team->flag).$team->nom . '-' . $t->nom.img($t->flag));
         }
         $count++;
         return $content;
@@ -172,6 +174,16 @@ function ahref(string $url, string $str):string
     return '<a href="' . $url . '">' . $str . "</a>";
 }
 
+/**
+ * renvoie une image basée sur une url
+ * @param string $url
+ * @return string
+ */
+function img(string $url):string
+{
+    return '<img class="flags" src="' .$url . '"></img>';
+}
+
 
 if (isset($_GET['selectedGroupId'])) {
     $selectedId = $_GET['selectedGroupId'];
@@ -188,6 +200,7 @@ if (isset($_GET['selectedGroupId'])) {
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
