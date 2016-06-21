@@ -105,8 +105,8 @@ class IndexView
     private function renderTeams($group):string
     {
         $view = '';
-        foreach ($group->teams as $team) {
-            $view .= HTMLUtils::tag('p', $team);
+        foreach ($group->teams as $teamInfo) {
+            $view .= HTMLUtils::tag('p', HTMLUtils::img($teamInfo->flag).$teamInfo->nom);
         }
         return $view;
     }
@@ -170,7 +170,7 @@ class GroupView{
             for($i = $count; $i < 4 ; $i++ ){
                 $t = $teams[$i];
                 if( $t != $team )
-                    $content .= HTMLUtils::tag('p', $team . '-' . $t);
+                    $content .= HTMLUtils::tag('p', HTMLUtils::img($team->flag).$team->nom . '-' . $t->nom.HTMLUtils::img($t->flag));
             }
             $count++;
             return $content;
@@ -235,7 +235,7 @@ class Competition
         if (count($selectedGroups) > 0)
             $selectedGroup = $selectedGroups[array_keys($selectedGroups)[0]];
 
-        if (count($selectedGroups) == 0)
+        else if (count($selectedGroups) == 0)
             $selectedGroup = null;
 
         return $selectedGroup;
@@ -300,6 +300,16 @@ class HTMLUtils
     {
         return '<a href="' . $url . '">' . $str . "</a>";
     }
+
+    /**
+     * renvoie une image basée sur une url
+     * @param string $url
+     * @return string
+     */
+    static public function img(string $url):string
+    {
+        return '<img class="flags" src="' . $url .'"></img>';
+    }
 }
 
 
@@ -313,6 +323,7 @@ $page = $router->get($_GET);
 <head>
     <meta charset="UTF-8">
     <title>UEFA</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php echo $page?>
