@@ -8,7 +8,7 @@ define("PATH_APP", $_SERVER['PHP_SELF']);
 /**
  * stdClass : structure de données d'une competition
  */
-$competition;
+global $competition;
 
 function initData($path)
 {
@@ -19,11 +19,11 @@ function initData($path)
 
 /**
  * renvoie le rendu html d'une compétition
- * @return string rendu html d'une compétition
+ * @return string
  */
 function renderIndex():string
 {
-    initData(PATH_DATA); //TODO renommer
+    initData(PATH_DATA); 
 
     $content = TITLE;
 
@@ -77,8 +77,10 @@ function getGroupsViews(array $groups):string
 function getGroupView($group)
 {
     $content = ahref(PATH_APP . '?selectedGroupId=' . $group->id, $group->id);
-    foreach ($group->teams as $team) {
-        $content .= p($team);
+    foreach ($group->teams as $teamInfo) {
+//        echo "<pre>";
+//        var_dump($teamInfo);
+        $content .= p(img($teamInfo->flag).$teamInfo->nom);
     }
     return $content;
 }
@@ -104,13 +106,17 @@ function renderGroupPage(string $groupId):string
     if( count($selectedGroups)>0 )
         $selectedGroup = $selectedGroups[array_keys($selectedGroups)[0]];
 
+    if( count($selectedGroups)<=0) {
+        $content = ahref(PATH_APP, "Retour aux groupes");
+        $content .= tag("p","Ce groupe n'existe pas");
+        return $content;
+    }
+
     $content = renderHeader($competition);
     $content .= ahref(PATH_APP,"Retour aux groupes" );
-    //$content .= renderHeader($competition);
     $content .= renderGroupMatches($selectedGroup);
 
-    return $content/*p($competition->name)*/
-        ;
+    return $content;
 }
 
 /**
@@ -127,7 +133,7 @@ function renderGroupMatches($group):string
         for($i = $count; $i < 4 ; $i++ ){
             $t = $teams[$i];
             if( $t != $team )
-                $content .= p($team . '-' . $t);
+                $content .= p(img($team->flag).$team->nom . '-' . $t->nom.img($t->flag));
         }
         $count++;
         return $content;
@@ -168,6 +174,16 @@ function ahref(string $url, string $str):string
     return '<a href="' . $url . '">' . $str . "</a>";
 }
 
+/**
+ * renvoie une image basée sur une url
+ * @param string $url
+ * @return string
+ */
+function img(string $url):string
+{
+    return '<img class="flags" src="' .$url . '"></img>';
+}
+
 
 if (isset($_GET['selectedGroupId'])) {
     $selectedId = $_GET['selectedGroupId'];
@@ -180,10 +196,11 @@ if (isset($_GET['selectedGroupId'])) {
 ?>
 
 <!doctype html>
-<html lang="en-US">
+<html lang="fr-FR">
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 

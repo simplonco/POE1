@@ -105,8 +105,8 @@ class IndexView
     private function renderTeams($group):string
     {
         $view = '';
-        foreach ($group->teams as $team) {
-            $view .= HTMLUtils::tag('p', $team);
+        foreach ($group->teams as $teamInfo) {
+            $view .= HTMLUtils::tag('p', HTMLUtils::img($teamInfo->flag).$teamInfo->nom);
         }
         return $view;
     }
@@ -136,11 +136,17 @@ class GroupView{
 
     public function render():string
     {
-        $view = HTMLUtils::tag('h1', $this->compet->name);
-        $view .= HTMLUtils::ahref(PATH_APP, "Retour à la liste");
-        $view .= HTMLUtils::tag('h2', "Groupe " . $this->group->id);
+        if ($this->group == null){
+            $view = HTMLUtils::ahref(PATH_APP, "Retour à la liste");
+            $view .= HTMLUtils::tag("p","Ce groupe n'existe pas");
+        }
 
-        $view .= $this->renderMatches($this->group->teams);
+        else {
+            $view = HTMLUtils::tag('h1', $this->compet->name);
+            $view .= HTMLUtils::ahref(PATH_APP, "Retour à la liste");
+            $view .= HTMLUtils::tag('h2', "Groupe " . $this->group->id);
+            $view .= $this->renderMatches($this->group->teams);
+        }
 
         /*foreach ($this->group->teams as $team) {
             //$view .= Utils::ahref(PATH_APP . '?selectedGroupId=' . $group->id, Utils::tag('h2', $group->id));
@@ -157,13 +163,14 @@ class GroupView{
      */
     private function renderMatches($teams):string
     {
+
         $count = 0;
         $matches = array_map( function($team) use( $teams , &$count){
             $content = '';
             for($i = $count; $i < 4 ; $i++ ){
                 $t = $teams[$i];
                 if( $t != $team )
-                    $content .= HTMLUtils::tag('p', $team . '-' . $t);
+                    $content .= HTMLUtils::tag('p', HTMLUtils::img($team->flag).$team->nom . '-' . $t->nom.HTMLUtils::img($t->flag));
             }
             $count++;
             return $content;
@@ -201,7 +208,7 @@ class Competition
      * initialisation des données à partir d'un objet stdClass
      * @param $src
      */
-    private function initData(string $src)
+    private function initData($src)
     {
         $this->name = $src->name;
 
@@ -217,7 +224,7 @@ class Competition
      * @param $groupId
      * @return Group
      */
-    public function getGroupById($groupId):Group
+    public function getGroupById($groupId)
     {
         $selectedGroups = array_filter(
             $this->groups,
@@ -227,6 +234,9 @@ class Competition
             });
         if (count($selectedGroups) > 0)
             $selectedGroup = $selectedGroups[array_keys($selectedGroups)[0]];
+
+        else if (count($selectedGroups) == 0)
+            $selectedGroup = null;
 
         return $selectedGroup;
     }
@@ -286,9 +296,19 @@ class HTMLUtils
      * @param string $str
      * @return string
      */
-    static function ahref(string $url, string $str):string
+    static public function ahref(string $url, string $str):string
     {
         return '<a href="' . $url . '">' . $str . "</a>";
+    }
+
+    /**
+     * renvoie une image basée sur une url
+     * @param string $url
+     * @return string
+     */
+    static public function img(string $url):string
+    {
+        return '<img class="flags" src="' . $url .'"></img>';
     }
 }
 
@@ -303,6 +323,7 @@ $page = $router->get($_GET);
 <head>
     <meta charset="UTF-8">
     <title>UEFA</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php echo $page?>
