@@ -46,7 +46,7 @@ echo $notes["SVT"];
 ### Exercices
 
 **Accueil / Articles**
-Sur une page d'accueil affichez les liens vers trois articles
+Sur une page d'accueil, affichez les liens vers trois articles.
 
 **Identification Ajax**
 créez une page login.html contenant :
@@ -155,12 +155,12 @@ sudo service apache2 restart
 
 **Exercice login ajax - part 2**
 En cas d'identification réussie, login.php renvoie des informations au format JSON :
- - le resultat de la requete : 1
+ - le résultat de la requête : 1
  - le nom de l'utilisateur : Pierre Dupont
  - nombre de nouveaux messages : 5
 
 En cas d'erreur seulement
- - resultat de la requete : 0
+ - résultat de la requête : 0
 
 + [Correction Login basique](https://github.com/Simplon-lyon/dev-web/tree/master/php/login_basic)
 + [Correction Login Ajax](https://github.com/Simplon-lyon/dev-web/tree/master/php/login_ajax)
@@ -241,7 +241,7 @@ if( $connexion = mysqli_connect('localhost', 'root', 'root', 'blog') ){
 </form>
 ```
 
-Côté PHP, le traitement peut se faire une fois les variables récupérer via $_GET
+Côté PHP, le traitement peut se faire une fois les variables récupérées via $_GET
 
 ```php
 if( isset($_GET['nom']) && isset($_GET['prenom'])){
@@ -260,11 +260,11 @@ c'est sur cette page que le traitement des données saisies dans le formulaire
 ### Méthodes : GET ou POST
 
 Jusqu'à présent on a utilisé la méthode 'get' pour l'envoi de données : les paramètres sont passées dans l'url.
-C'est la méthode la plus simple pour comprendre l'envoi de données, mais elle a plusieurs limite :
+C'est la méthode la plus simple pour comprendre l'envoi de données, mais elle a plusieurs limites :
 - ce n'est pas très secure
 - il y a un nombre limité de caractères  ( 512 caractères par défaut en PHP )
 
-L'autre méthode 'post', n'affiche pas les données dans l'url et n'a pas les mêmes limites de taille.
+L'autre méthode 'post', n'affiche pas les données dans l'url et n'a pas la même limite de taille.
 
 ```html
 <form action="ajout.php" method="get">
@@ -311,8 +311,6 @@ echo $date->format('d-m-Y H:i:s').B;
 ```
 
 + Timestamp : entier représentant le nb de sec écoulées depuis 1/1/1970
-
-
 
 ### Les Sessions
 

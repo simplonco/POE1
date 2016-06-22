@@ -21,6 +21,9 @@
 
 ### Défi 1 : <a href="exercices/euro2016/README.md" target="_blank">Euro 2016</a>
 
+- [correction procédurale](/exercices/euro2016/corrections/basic/index.php)
+- [correction orienté objet](/exercices/euro2016/corrections/basic/index.php)
+
 ## PHP OO
 - http://code.tutsplus.com/tutorials/object-oriented-php-for-beginners--net-12762
 - http://gregwar.com/php/programmation-orientee-objet.html
