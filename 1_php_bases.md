@@ -1014,7 +1014,7 @@ composer require silex/silex
 + Classes abstraites
 
 Classe de base, définissant des méthodes et des propriétés, mais destinée à ne pas être instanciée
-Seules les classes qui hériteront de la classe abstraites pourront être instanciés
+Seules les classes qui hériteront de la classe abstraites pourront être instanciées
 
 
 ```php
