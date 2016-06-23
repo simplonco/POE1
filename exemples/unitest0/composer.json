@@ -1,0 +1,13 @@
+{
+  "name": "bz/rxla",
+  "require-dev": {
+    "phpunit/phpunit": "^5.4"
+  },
+  "authors": [
+    {
+      "name": "rxlabz",
+      "email": "dev@rxlabz.com"
+    }
+  ],
+  "require": {}
+}
